@@ -1,0 +1,26 @@
+<ul class="nav nav-list">
+        <li class="nav-header">Find a Category</li>
+        <form>
+        <label></label>
+        <li><input data-actid="{{ act_cat.id }}" class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+        </form>
+</ul>
+
+</br>
+
+<div id="cats">
+
+{% if cats %}
+	<ul class="nav nav-sidebar">
+	{% for c in cats %}
+		{% if c == act_cat %} <li class="active"> {% else %} <li> {% endif %}
+			<a href="{% url 'category' c.slug%}">{{ c.name }}</a></li>
+	{% endfor %}
+
+{% else %}
+	<li> <strong> No categories. </strong> </li>
+	</ul>
+
+{% endif %}
+
+</div>
