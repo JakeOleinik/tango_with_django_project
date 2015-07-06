@@ -180,16 +180,22 @@ def get_category_list(max_results=0, starts_with=''):
 
 #Uses AJAX
 def suggest_category(request):
+    print 'reached'
     cat_list = []
+    context = {}
     starts_with = ''
     if request.method == 'GET':
         starts_with = request.GET['suggestion']
-        actid = request.GET['actid']
+        if 'actid' in request.GET.keys():
+            actid = request.GET['actid']
+            act_cat = Category.objects.get(id=actid)
+            context['act_cat'] = act_cat
 
     cat_list = get_category_list(8, starts_with)
-    act_cat = Category.objects.get(id=actid)
+    context['cats'] = cat_list
 
-    return render(request, 'rango/category_list.html', {'cats': cat_list, 'act_cat': act_cat})
+
+    return render(request, 'rango/category_list.html', context)
 
 
 

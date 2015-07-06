@@ -2,7 +2,7 @@
         <li class="nav-header">Find a Category</li>
         <form>
         <label></label>
-        <li><input data-actid="{{ act_cat.id }}" class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+        <li><input {% if act_cat %} data-actid="{{ act_cat.id }}" {% endif %} class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
         </form>
 </ul>
 
